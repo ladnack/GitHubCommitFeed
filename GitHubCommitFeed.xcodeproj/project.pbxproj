@@ -12,6 +12,8 @@
 		7F83DCFF1E62F40B004D3F93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F83DCFD1E62F40B004D3F93 /* Main.storyboard */; };
 		7F83DD011E62F40B004D3F93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F83DD001E62F40B004D3F93 /* Assets.xcassets */; };
 		7F83DD041E62F40B004D3F93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F83DD021E62F40B004D3F93 /* LaunchScreen.storyboard */; };
+		7F83DD0E1E62F915004D3F93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F83DD0C1E62F915004D3F93 /* Alamofire.framework */; };
+		7F83DD0F1E62F915004D3F93 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F83DD0D1E62F915004D3F93 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		7F83DD001E62F40B004D3F93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F83DD031E62F40B004D3F93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F83DD051E62F40B004D3F93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F83DD0C1E62F915004D3F93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		7F83DD0D1E62F915004D3F93 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F83DD0E1E62F915004D3F93 /* Alamofire.framework in Frameworks */,
+				7F83DD0F1E62F915004D3F93 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,7 @@
 			children = (
 				7F83DCF81E62F40B004D3F93 /* GitHubCommitFeed */,
 				7F83DCF71E62F40B004D3F93 /* Products */,
+				7F83DD0B1E62F914004D3F93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,15 @@
 			path = GitHubCommitFeed;
 			sourceTree = "<group>";
 		};
+		7F83DD0B1E62F914004D3F93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F83DD0C1E62F915004D3F93 /* Alamofire.framework */,
+				7F83DD0D1E62F915004D3F93 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +90,7 @@
 				7F83DCF21E62F40B004D3F93 /* Sources */,
 				7F83DCF31E62F40B004D3F93 /* Frameworks */,
 				7F83DCF41E62F40B004D3F93 /* Resources */,
+				7F83DD101E62F932004D3F93 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,6 +148,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F83DD101E62F932004D3F93 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F83DCF21E62F40B004D3F93 /* Sources */ = {
@@ -260,11 +295,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L92T6S2ZF8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GitHubCommitFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kyoheisakai.GitHubCommitFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -273,11 +313,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L92T6S2ZF8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GitHubCommitFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kyoheisakai.GitHubCommitFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
